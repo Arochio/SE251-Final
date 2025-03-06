@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
 </head>
+<style>
+    .red{
+        color: red;
+        margin: 0px;
+    }
+</style>
 <body>
     <h1>Signup Paige</h1>
     <div id ="form">
         <form name ="signup">
             
-            Username: 
+            E-Mail:
             <input type="text" id="username">
+            <p id="uAlert" class="red"></p>
             <br>
 
             Password:
             <input type="text" id="password">
+            <p id="pAlert" class="red"></p>
             <br>
 
             <input type="button" id="submit" value="Submit" onclick>
@@ -25,7 +33,24 @@
         var test = "paige@test.wow";
         var emailValidation = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
 
+        var email = document.querySelector(`#username`);
+        var subButt = document.querySelector(`#submit`);
+        var password = document.querySelector(`#password`);
+        
+
         console.log(emailValidation.test(test));
+
+        subButt.addEventListener(`click`, e=>{
+            let v = true;
+            if(!emailValidation.test(email.value)){
+                document.querySelector(`#uAlert`).innerHTML = "Please enter a valid E-mail";
+                v = false;
+            }
+            else{
+                document.querySelector(`#uAlert`).innerHTML = "";
+            }
+            
+        })
     </script>
 </body>
 </html>
