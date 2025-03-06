@@ -63,7 +63,7 @@ app.post(`/accounts`, async (req, res) => {
 
 // Get to login page
 app.get(`/login`, (req, res) => {
-  const filePath = path.join(__dirname, `public`, `login.html`);
+  const filePath = path.join(__dirname, `public`, `index.html`);
   res.send(filePath);
 });
 
