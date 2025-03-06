@@ -23,9 +23,9 @@
     </div>
     <script>
         var test = "paige@test.wow";
-        var emailValidation = new RegExp('/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/gm');
+        var emailValidation = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
 
-        console.log(test);
+        console.log(emailValidation.test(test));
     </script>
 </body>
 </html>
