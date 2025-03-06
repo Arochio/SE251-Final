@@ -22,7 +22,7 @@
             <br>
 
             Password:
-            <input type="text" id="password">
+            <input type="password" id="password">
             <p id="pAlert" class="red"></p>
             <br>
 
@@ -42,14 +42,21 @@
 
         subButt.addEventListener(`click`, e=>{
             let v = true;
+            let u = document.querySelector(`#uAlert`);
+            let p = document.querySelector(`#pAlert`);
+
+
+            u.innerHTML = "";
+            p.innerHTML = "";
+
             if(!emailValidation.test(email.value)){
-                document.querySelector(`#uAlert`).innerHTML = "Please enter a valid E-mail";
+                u.innerHTML = "Please enter a valid E-mail";
                 v = false;
             }
-            else{
-                document.querySelector(`#uAlert`).innerHTML = "";
-            }
-            
+            if(password.value.length < 6){
+                p.innerHTML = "Password must be six (6) or more characters.";
+                v = false;
+            }       
         })
     </script>
 </body>
