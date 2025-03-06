@@ -6,6 +6,26 @@
     <title>Signup</title>
 </head>
 <body>
-    
+    <h1>Signup Paige</h1>
+    <div id ="form">
+        <form name ="signup">
+            
+            Username: 
+            <input type="text" id="username">
+            <br>
+
+            Password:
+            <input type="text" id="password">
+            <br>
+
+            <input type="button" id="submit" value="Submit" onclick>
+        </form>
+    </div>
+    <script>
+        var test = "paige@test.wow";
+        var emailValidation = new RegExp('/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/gm');
+
+        console.log(test);
+    </script>
 </body>
 </html>
