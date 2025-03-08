@@ -88,7 +88,7 @@ app.post(`/login`, async (req, res) => {
   }
 });
 
-//Start up the server on port 3000.
+//Start up the server on port 80.
 var port = process.env.PORT || 80;
 app.listen(port, () => {
   console.log("Server Running at Localhost:80");
