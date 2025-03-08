@@ -30,16 +30,12 @@
         </form>
     </div>
     <script>
-        var test = "paige@test.wow";
         var emailValidation = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
 
         var email = document.querySelector(`#username`);
         var subButt = document.querySelector(`#submit`);
         var password = document.querySelector(`#password`);
         
-
-        console.log(emailValidation.test(test));
-
         subButt.addEventListener(`click`, e=>{
             let v = true;
             let u = document.querySelector(`#uAlert`);
