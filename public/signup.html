@@ -5,7 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
 </head>
+<style>
+    .red{
+        color: red;
+        margin: 0px;
+    }
+</style>
 <body>
-    
+    <h1>Signup Paige</h1>
+    <div id ="form">
+        <form name ="signup">
+            
+            E-Mail:
+            <input type="text" id="username">
+            <p id="uAlert" class="red"></p>
+            <br>
+
+            Password:
+            <input type="password" id="password">
+            <p id="pAlert" class="red"></p>
+            <br>
+
+            <input type="button" id="submit" value="Submit" onclick>
+        </form>
+    </div>
+    <script>
+        var emailValidation = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+
+        var email = document.querySelector(`#username`);
+        var subButt = document.querySelector(`#submit`);
+        var password = document.querySelector(`#password`);
+        
+        subButt.addEventListener(`click`, e=>{
+            let v = true;
+            let u = document.querySelector(`#uAlert`);
+            let p = document.querySelector(`#pAlert`);
+
+
+            u.innerHTML = "";
+            p.innerHTML = "";
+
+            if(!emailValidation.test(email.value)){
+                u.innerHTML = "Please enter a valid E-mail";
+                v = false;
+            }
+            if(password.value.length < 6){
+                p.innerHTML = "Password must be six (6) or more characters.";
+                v = false;
+            }       
+        })
+    </script>
 </body>
 </html>
