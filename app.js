@@ -24,7 +24,7 @@ const readFile = (path) => {
 // Get to sign up page
 app.get(`/signup`, (req, res) => {
   const filePath = path.join(__dirname, `public`, `signup.html`);
-  res.sendFile(filePath);
+  res.sendFile(filePath); //uses 'sendFile' to display the html rather than 'send'
 });
 // Get all accounts
 app.get(`/accounts`, async (req, res) => {
@@ -64,7 +64,7 @@ app.post(`/accounts`, async (req, res) => {
 // Get to login page
 app.get(`/login`, (req, res) => {
   const filePath = path.join(__dirname, `public`, `index.html`);
-  res.sendFile(filePath);
+  res.sendFile(filePath); //uses 'sendFile' to display the html rather than 'send'
 });
 
 // Get to account page if login info matches username and password in JSON file
