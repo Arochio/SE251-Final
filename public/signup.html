@@ -32,7 +32,7 @@
     <script>
         var emailValidation = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
 
-        var email = document.querySelector(`#username`);
+        var username = document.querySelector(`#username`);
         var subButt = document.querySelector(`#submit`);
         var password = document.querySelector(`#password`);
         
@@ -40,32 +40,32 @@
         console.log(emailValidation.test(test));
 
         subButt.addEventListener(`click`, async (e)=>{
-            let v = true;
-            let u = document.querySelector(`#uAlert`);
-            let p = document.querySelector(`#pAlert`);
+            let valid = true;
+            let userAlert = document.querySelector(`#uAlert`);
+            let passAlert = document.querySelector(`#pAlert`);
 
 
-            u.innerHTML = "";
-            p.innerHTML = "";
+            userAlert.innerHTML = "";
+            passAlert.innerHTML = "";
 
-            if(!emailValidation.test(email.value)){
-                u.innerHTML = "Please enter a valid E-mail";
-                v = false;
+            if(!emailValidation.test(username.value)){
+                userAlert.innerHTML = "Please enter a valid E-mail";
+                valid = false;
             }
             if(password.value.length < 6){
-                p.innerHTML = "Password must be six (6) or more characters.";
-                v = false;
+                passAlert.innerHTML = "Password must be six (6) or more characters.";
+                valid = false;
             }       
             
             // need to update accounts.json using app.js if result is valid
             // client-side validation seems to be working normally
-            if(v){
+            if(valid){
                 await fetch("http://localhost:80/accounts", {
                 
                         method: "POST",
                         
                         body: JSON.stringify({
-                            username: email.value,
+                            username: username.value,
                             password: password.value,
                         }),
                         
@@ -74,7 +74,6 @@
                         }
                     })
 
-                load()
             }
         })
     </script>
