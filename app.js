@@ -57,7 +57,7 @@ app.post(`/accounts`, async (req, res) => {
         console.log(`Account added`);
       }
     });
-    res.send(jsonString);
+    res.redirect('/login');
   }
 });
 
