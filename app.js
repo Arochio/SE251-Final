@@ -26,11 +26,7 @@ app.get(`/signup`, (req, res) => {
   const filePath = path.join(__dirname, `public`, `signup.html`);
   res.sendFile(filePath); //uses 'sendFile' to display the html rather than 'send'
 });
-app.get(`/account`, (req, res) => {
-  const filePath = path.join(__dirname, `public`, `account.html`);
-  res.sendFile(filePath); //uses 'sendFile' to display the html rather than 'send'
-});
-
+// Get all accounts
 app.get(`/accounts`, async (req, res) => {
   var data = await readFile(`./data/accounts.json`);
   res.send(data);
