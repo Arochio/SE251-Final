@@ -21,6 +21,13 @@
         <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
         <!-- Add geolocation functionality through API -->
         <p id="location"></p>
+        <script>
+            const storedState = localStorage.getItem('state');
+            const storedCity = localStorage.getItem('city');
+            if (storedState && storedCity) {
+                document.getElementById("location").innerText = `City: ${storedCity}, State: ${storedState}`;
+            }
+        </script>
         <button onclick="getLocation()">Get Location</button>
         <h2 id="emailHeader"></h2>
        
@@ -36,6 +43,7 @@
        
         <script>//geo location and account json functions
             let state, city;
+            
             async function getLocation() {
                 const zipCode = prompt("Please enter your zip code:");
                 if (zipCode) {
@@ -76,9 +84,22 @@
         </script>
        
        <script> //darkmode button
+                if (localStorage.getItem('dark') === 'True') {
+                    document.body.classList.add("dark-mode");
+                }
                 function toggleDarkMode() {
                     document.body.classList.toggle("dark-mode");
+                    if (document.body.classList.contains("dark-mode")) {
+                        localStorage.setItem('dark', 'True');
+                    } else {
+                        localStorage.setItem('dark', 'False');
+                    }
                 }
+            
+
+                
+                
+                
        
         </script>
             <style>
