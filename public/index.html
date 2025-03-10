@@ -5,12 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
+<style>
+    .red{
+        color: red;
+        margin: 0px;
+    }
+</style>
 <body>
-    <h1>Login</h1>
-    <!-- Kerri's Section -->
-    <!-- Add login form for email and password -->
-    <!-- Use client-side validation to ensure valid email -->
-    <!-- Use app.js post function made by Jose to match email + password to existing -->
-    <!-- Model the sending of information to Jose's function off of the Node/Ajax assignment -->
+    <h1>Login Page</h1>
+    <div id ="form">
+        <form name ="signup">
+            
+            E-Mail:
+            <input type="text" id="username" value="test@email.neit.edu">
+            <p id="uAlert" class="red"></p>
+            <br>
+
+            Password:
+            <input type="password" id="password" value="password">
+            <p id="pAlert" class="red"></p>
+            <br>
+
+            <input type="button" id="submit" value="Submit" onclick>
+        </form>
+    </div>
+    <script>
+        var emailValidation = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+
+        var username = document.querySelector(`#username`);
+        var subButt = document.querySelector(`#submit`);
+        var password = document.querySelector(`#password`);
+        
+
+
+
+        subButt.addEventListener(`click`, async (e)=>{
+            let valid = true;
+            let userAlert = document.querySelector(`#uAlert`);
+            let passAlert = document.querySelector(`#pAlert`);
+
+
+            userAlert.innerHTML = "";
+            passAlert.innerHTML = "";
+
+            if(!emailValidation.test(username.value)){
+                userAlert.innerHTML = "Please enter a valid E-mail";
+                valid = false;
+            }
+            if(password.value.length < 6){
+                passAlert.innerHTML = "Password must be six (6) or more characters.";
+                valid = false;
+            }       
+            
+            // need to update accounts.json using app.js if result is valid
+            // client-side validation seems to be working normally
+            if(valid){
+               var junk = await fetch("http://localhost:80/login", {
+                
+                        method: "POST",
+                        
+                        body: JSON.stringify({
+                            username: username.value,
+                            password: password.value,
+                        }),
+                        
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        }
+                    })
+                var words = await junk.json()
+                if(words.valid)window.location=`http://localhost:80/account`
+                console.log(words)
+            }
+        })
+    </script>
 </body>
 </html>
