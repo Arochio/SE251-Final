@@ -26,12 +26,7 @@ app.get(`/signup`, (req, res) => {
   const filePath = path.join(__dirname, `public`, `signup.html`);
   res.sendFile(filePath); //uses 'sendFile' to display the html rather than 'send'
 });
-app.get(`/account`, (req, res) => {
-  const filePath = path.join(__dirname, `public`, `account.html`);
-  console.log(filePath);
-  res.sendFile(filePath); //uses 'sendFile' to display the html rather than 'send'
-});
-
+// Get all accounts
 app.get(`/accounts`, async (req, res) => {
   var data = await readFile(`./data/accounts.json`);
   res.send(data);
@@ -82,6 +77,8 @@ app.post(`/login`, async (req, res) => {
     if (newData[i].username === req.body.username && newData[i].password === req.body.password) {
       found = true;
       console.log(`Login successful`);
+      res.sendFile(path.join(__dirname, `public`, `accounts.html`));
+      return;
     }
   }
 
@@ -89,14 +86,6 @@ app.post(`/login`, async (req, res) => {
     console.log(`Login failed`);
     res.send(`Login failed`);
   }
-  else {
-    console.log(__dirname + `/public/account.html`)
-    
-    //
-  }
-  //res.redirect('/account')
-  //res.sendFile(__dirname + `/public/account.html`);
-  res.send(`{"valid":"true"}`);
 });
 
 //Start up the server on port 80.
